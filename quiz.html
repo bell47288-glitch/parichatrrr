@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | Creation & Innovation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&family=Prompt:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 120px auto 5rem;
+            min-height: 60vh;
+        }
+
+        .question-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-family: var(--font-heading);
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: left;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--secondary);
+            transform: translateX(10px);
+        }
+
+        .option-btn.selected {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
+        }
+
+        .option-btn.correct {
+            background: #00ff88;
+            color: #000;
+            border-color: #00ff88;
+        }
+
+        .option-btn.wrong {
+            background: #ff0055;
+            border-color: #ff0055;
+        }
+
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .score-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+
+        .category-badge {
+            background: rgba(var(--primary-rgb), 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid var(--primary);
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor-glow"></div>
+
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">C&I<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">กลับหน้าหลัก</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container quiz-container">
+
+        <!-- Welcome Screen -->
+        <div id="start-screen" class="question-card text-center" style="text-align: center;">
+            <h1 class="hero-title" style="font-size: 3rem;">ทดสอบความรู้</h1>
+            <p class="hero-desc" style="margin: 0 auto 2rem;">
+                แบบทดสอบ 50 ข้อ เกี่ยวกับ Creation & Innovation, Web Development, UX/UI, Strategy และ SEO
+            </p>
+            <button id="start-btn" class="btn btn-primary">เริ่มทำแบบทดสอบ</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="question-card hidden">
+            <div class="progress-bar" id="progress-bar"></div>
+            <div class="question-header">
+                <span id="category-display" class="category-badge">Category</span>
+                <span id="question-count">1/50</span>
+            </div>
+            <h2 id="question-text" class="question-text">Question text goes here?</h2>
+            <div id="options-container" class="options-grid">
+                <!-- Options will be injected here -->
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="question-card hidden score-display">
+            <h2>ยินดีด้วย! คุณทำสำเร็จ</h2>
+            <p>คะแนนของคุณคือ</p>
+            <div id="final-score" class="score-number">0/50</div>
+            <button onclick="location.reload()" class="btn btn-outline">เริ่มใหม่</button>
+            <a href="index.html" class="btn btn-primary">กลับหน้าหลัก</a>
+        </div>
+
+    </main>
+
+    <script src="js/quiz_data.js"></script>
+    <script src="js/quiz.js"></script>
+
+</body>
+
+</html>
